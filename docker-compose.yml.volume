@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./dir  # Path to the directory containing the Dockerfile
+    ports:
+      - "8080:80"  # Map host port 8080 to container port 80
+    volumes:
+      - web-volume:/usr/share/nginx/html/  # Mount the HTML file into the container
+    networks:
+      - custom-network
+
+networks:
+  custom-network:
+    driver: bridge
+
+volumes:
+  web-volume:
+    driver: local
